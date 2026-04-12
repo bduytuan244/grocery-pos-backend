@@ -20,4 +20,21 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    public Product updateProduct(String id, Product productDetails) {
+        return productRepository.findById(id).map(product -> {
+            product.setName(productDetails.getName());
+            product.setPrice(productDetails.getPrice());
+            // Cập nhật thêm các trường khác nếu cần
+            return productRepository.save(product);
+        }).orElse(null);
+    }
+
+    public boolean deleteProduct(String id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }
