@@ -21,6 +21,6 @@ public class Product {
 
     private Double price;
     private Integer stock;
-
+    private String imageUrl;
     private List<Variant> variants;
 }
