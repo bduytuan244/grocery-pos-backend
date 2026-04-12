@@ -26,4 +26,28 @@ public class ProductController {
         Product savedProduct = productService.addProduct(product);
         return ResponseEntity.ok(savedProduct);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable String id, @RequestBody Product productDetails) {
+        // Gọi xuống tầng Service để xử lý logic update
+        Product updatedProduct = productService.updateProduct(id, productDetails);
+
+        if (updatedProduct != null) {
+            return ResponseEntity.ok(updatedProduct);
+        } else {
+            return ResponseEntity.notFound().build(); // Trả về lỗi 404 nếu không tìm thấy ID
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
+        // Gọi xuống tầng Service để xóa
+        boolean isDeleted = productService.deleteProduct(id);
+
+        if (isDeleted) {
+            return ResponseEntity.noContent().build(); // Trả về mã 204 (Xóa thành công, không cần data trả về)
+        } else {
+            return ResponseEntity.notFound().build(); // Trả về lỗi 404 nếu không tìm thấy ID
+        }
+    }
 }
