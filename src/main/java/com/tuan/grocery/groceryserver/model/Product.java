@@ -23,4 +23,6 @@ public class Product {
     private Integer stock;
     private String imageUrl;
     private List<Variant> variants;
+    private Integer soldCount = 0;   // Số lượng đã bán ra
+    private Integer searchCount = 0; // Số lần khách bấm vào/tìm kiếm
 }
