@@ -25,7 +25,12 @@ public class ProductService {
         return productRepository.findById(id).map(product -> {
             product.setName(productDetails.getName());
             product.setPrice(productDetails.getPrice());
-            // Cập nhật thêm các trường khác nếu cần
+
+            // ---> ĐÃ THÊM DÒNG CẬP NHẬT LINK ẢNH <---
+            product.setImageUrl(productDetails.getImageUrl());
+
+            // Nếu bạn có thêm category hay unit thì cũng thêm vào đây giống như trên nhé
+
             return productRepository.save(product);
         }).orElse(null);
     }
