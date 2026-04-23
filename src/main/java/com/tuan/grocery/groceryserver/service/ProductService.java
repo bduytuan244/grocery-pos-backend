@@ -25,11 +25,11 @@ public class ProductService {
         return productRepository.findById(id).map(product -> {
             product.setName(productDetails.getName());
             product.setPrice(productDetails.getPrice());
-
-            // ---> ĐÃ THÊM DÒNG CẬP NHẬT LINK ẢNH <---
             product.setImageUrl(productDetails.getImageUrl());
 
-            // Nếu bạn có thêm category hay unit thì cũng thêm vào đây giống như trên nhé
+            // === BỔ SUNG 2 DÒNG NÀY ĐỂ BACKEND CHỊU LƯU DỮ LIỆU ===
+            product.setCategory(productDetails.getCategory());
+            product.setUnit(productDetails.getUnit());
 
             return productRepository.save(product);
         }).orElse(null);
